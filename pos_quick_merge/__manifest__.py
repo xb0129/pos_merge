@@ -16,7 +16,7 @@
     'author': "Bin Xu",
     'website': "https://isonzea.com",
 
-
+    'images': ['static/description/1.png','static/description/2.png'],
     'category': 'Sales/Point Of Sale',
     'version': '1.0',
 
