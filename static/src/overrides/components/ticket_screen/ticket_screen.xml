@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="point_of_sale_custom.TicketScreen" t-inherit="point_of_sale.TicketScreen" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('header-row')]//div[@name='delete']" position="before">
+            <div class="col p-2" name="merge">Merge</div>
+        </xpath>
+        <xpath expr="//div[hasclass('order-row')]//div[@name='delete']" position="before">
+            <div class="col p-2" name="table">
+            <input type="checkbox" name="merge_checkbox" t-on-click="ev => this.onSelectedOrder(ev, order)"/>
+            </div>
+        </xpath>
+
+        <xpath expr="//button[@class='button validation load-order-button w-100 btn btn-lg btn-primary rounded-0 fw-bolder py-3']" position="replace">
+            <t t-set="_selectedOrderToMerge" t-value="getSelectedOrderToMerge()" />
+            <t t-set="_selectedOrdersToMergeSet" t-value="getSelectedOrdersToMergeSet()" />
+            <t t-if="_selectedOrdersToMergeSet.length>1">
+                                <button class="button validation load-order-button w-100 btn btn-lg btn-primary rounded-0 fw-bolder py-3" t-on-click="() => this.mergeOrder()">
+                                <span class="fs-1 d-block">Merge Order</span>
+                                </button>
+            </t>
+            <t t-else="">
+                                <button class="button validation load-order-button w-100 btn btn-lg btn-primary rounded-0 fw-bolder py-3" t-on-click="() => this._setOrder(_selectedSyncedOrder)">
+                                <span class="fs-1 d-block">Load Order</span>
+                                </button>
+            </t>
+        </xpath>
+
+    </t>
+
+</templates>
